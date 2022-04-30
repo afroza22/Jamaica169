@@ -2,6 +2,8 @@ package automation_test.mortgage_calculator;
 
 import command_providers.ActOn;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -13,7 +15,7 @@ import parameters.DataProviderClass;
 import java.time.Duration;
 
 public class CalculateRealAprParameterized {
-
+    private static final Logger LOGGER = LogManager.getLogger(CalculateRealAprParameterized.class);
     WebDriver driver;
 
     @BeforeMethod

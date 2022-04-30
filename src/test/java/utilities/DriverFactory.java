@@ -13,7 +13,7 @@ public class DriverFactory {
 
     private static final DriverFactory instance = new DriverFactory();
 
-    private static DriverFactory getInstance() {
+    public static DriverFactory getInstance() {
         return instance;
     }
 

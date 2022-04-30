@@ -2,6 +2,8 @@ package automation_test.mortgage_calculator;
 
 import command_providers.ActOn;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -12,18 +14,7 @@ import utilities.DateUtils;
 
 import java.time.Duration;
 
-public class CalculateMortgageRate {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void browserInitialization(){
-        WebDriverManager. chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        ActOn.browser(driver).openBrowser("https://www.mortgagecalculator.org");
-    }
-
+public class CalculateMortgageRate extends BaseClass{
 
     @Test
     public void calculateMonthlyPayment(){
@@ -31,6 +22,7 @@ public class CalculateMortgageRate {
         String[] dateArray = date.split("-");
         String month = dateArray [0];
         String year = dateArray [1];
+
        new Home(driver)
                .enterHomeValue("300000")
                .clickOnDollarSign()
@@ -48,11 +40,7 @@ public class CalculateMortgageRate {
                .clickOnCalculate()
                .validateTotalMonthlyPayment("1,611.85");
 
-    }
 
-    @AfterMethod
-    public void closeBrowser(){
-        ActOn.browser(driver).closeBrowser();
 
     }
 }
